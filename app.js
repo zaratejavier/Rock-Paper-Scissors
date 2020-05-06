@@ -26,6 +26,13 @@ const game = () => {
       option.addEventListener("click", function () {
         const computerNumber = Math.floor(Math.random() * 3);
         const computerChoice = computerOptions[computerNumber];
+        //here is where we call compare hands
+        compareHands(this.textContent, computerChoice)
+
+        //update images
+        playerHand.src = `./assets/${this.textContent}.png`;
+        computerHand.src = `./assets/${computerChoice}.png`
+
       });
     });
   };
