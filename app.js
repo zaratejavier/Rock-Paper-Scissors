@@ -38,18 +38,40 @@ const game = () => {
        if(playerChoice === computerChoice){
          winner.textContent = 'It is a tie';
        }
+
        //check for rock
        if(playerChoice === 'rock'){
          if(computerChoice === 'scissors'){
-           winner.textContent = 'Player wins'
+           winner.textContent = 'Player Wins'
            return;
          }else{
-           winner.textContent = 'Computer wins';
+           winner.textContent = 'Computer Wins';
            return;
          }
        }
 
        //check for paper
+       if(playerChoice === 'paper'){
+        if(computerChoice === 'scissors'){
+          winner.textContent = 'Computer Wins'
+          return;
+        }else{
+          winner.textContent = 'Player Wins';
+          return;
+        }
+      }
+
+      //check for scissors
+      if(playerChoice === 'scissors'){
+        if(computerChoice === 'rock'){
+          winner.textContent = 'Computer Wins'
+          return;
+        }else{
+          winner.textContent = 'Player Wins';
+          return;
+        }
+      }
+
      }
   }
 
