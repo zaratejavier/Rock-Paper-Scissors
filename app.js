@@ -15,31 +15,41 @@ const game = () => {
   };
   //play match
   const playMatch = () => {
-    const options = document.querySelectorAll('.options button');
-    const playerHand = document.querySelector('.player-hand');
-    const computerHand = document.querySelector('.computer-hand');
+    const options = document.querySelectorAll(".options button");
+    const playerHand = document.querySelector(".player-hand");
+    const computerHand = document.querySelector(".computer-hand");
+    const hands = document.querySelectorAll(".hands img");
 
-    //computer options
+    hands.forEach(hand => {
+      hand.addEventListener("animationend", function() {
+        this.style.animation = "";
+      });
+    });
+    //Computer Options
     const computerOptions = ["rock", "paper", "scissors"];
 
     options.forEach(option => {
-      option.addEventListener("click", function () {
+      option.addEventListener("click", function() {
+        //Computer Choice
         const computerNumber = Math.floor(Math.random() * 3);
         const computerChoice = computerOptions[computerNumber];
-      
-        //here is where we call compare hands
-        compareHands(this.textContent, computerChoice)
 
-        //update images
-        playerHand.src = `./assets/${this.textContent}.png`;
-        computerHand.src = `./assets/${computerChoice}.png`
-
+        setTimeout(() => {
+          //Here is where we call compare hands
+          compareHands(this.textContent, computerChoice);
+          //Update Images
+          playerHand.src = `./assets/${this.textContent}.png`;
+          computerHand.src = `./assets/${computerChoice}.png`;
+        }, 2000);
+        //Animation
+        playerHand.style.animation = "shakePlayer 2s ease";
+        computerHand.style.animation = "shakeComputer 2s ease";
       });
     });
   };
 
-  
-  const updateScore = () =>{
+
+  const updateScore = () => {
     const playerScore = document.querySelector('.player-score p');
     const computerScore = document.querySelector('.computer-score p');
     playerScore.textContent = pScore;
@@ -47,8 +57,8 @@ const game = () => {
 
   }
 
-  const compareHands = (playerChoice, computerChoice) =>{
-     //Update Text
+  const compareHands = (playerChoice, computerChoice) => {
+    //Update Text
     const winner = document.querySelector(".winner");
     //Checking for a tie
     if (playerChoice === computerChoice) {
@@ -97,7 +107,7 @@ const game = () => {
         return;
       }
 
-     }
+    }
   }
 
   // is call all the inner functions
